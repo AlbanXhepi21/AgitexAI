@@ -26,12 +26,15 @@ Open [http://localhost:3000](http://localhost:3000).
 - `npm run start` — run production build
 - `npm run lint` — run ESLint
 
-## Contact form (email)
+## Contact form (Web3Forms)
 
-Submissions go to `CONTACT_FORM_TO_EMAIL` (default: **albanxhepi@agitexai.com**). You can use either:
+The form uses [Web3Forms](https://web3forms.com) (free, no domain verification). Submissions are sent to the email you verify when getting your access key.
 
-- **Gmail (free, no domain verification)** — Sends to any address. In `.env` set `GMAIL_USER` and `GMAIL_APP_PASSWORD` (create one at [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords) with 2-Step Verification enabled). The API uses this first when set.
-- **Resend** — Set `RESEND_API_KEY` in `.env`. To send to albanxhepi@agitexai.com you must verify agitexai.com at [resend.com/domains](https://resend.com/domains) and set `RESEND_FROM_EMAIL=AgitexAI <info@agitexai.com>`.
+1. Go to [web3forms.com](https://web3forms.com) and enter **albanxhepi@agitexai.com** (or the email where you want to receive submissions).
+2. Verify that email via the link they send.
+3. Copy your **Access Key** and add to `.env`:  
+   `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your-access-key-here`
+4. Restart the dev server.
 
 ## Deployment
 

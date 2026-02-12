@@ -53,17 +53,29 @@ export function Contact() {
   });
 
   const onSubmit = async (data: FormData) => {
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+    if (!accessKey) {
+      setSubmitError("Form not configured. Please set NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY in .env");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitError(null);
     try {
-      const res = await fetch("/api/contact", {
+      const subject = `Contact: ${[data.firstName, data.lastName].filter(Boolean).join(" ") || "Inquiry"}`;
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject,
+          botcheck: "",
+          ...data,
+        }),
       });
       const json = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        setSubmitError(json.error || "Something went wrong. Please try again or email albanxhepi@agitexai.com.");
+      if (!json.success) {
+        setSubmitError(json.message || "Something went wrong. Please try again or email albanxhepi@agitexai.com.");
         return;
       }
       setSubmitted(true);
