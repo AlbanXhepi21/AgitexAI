@@ -1,0 +1,42 @@
+export const howCanWeHelpCards = [
+  {
+    id: "ai-opportunities",
+    title: "I want to leverage AI but don't know where to start",
+    description: "We'll analyze your business and identify high-impact AI use cases",
+    ctaText: "Let's Explore AI Opportunities",
+    href: "#contact",
+    icon: "Lightbulb",
+  },
+  {
+    id: "mvp",
+    title: "I'm a startup founder validating my idea",
+    description: "Rapid prototyping with modern AI and cloud to test product-market fit",
+    ctaText: "Help Me Build My MVP",
+    href: "#contact",
+    icon: "Rocket",
+  },
+  {
+    id: "data-pipelines",
+    title: "I need data pipelines and analytics infrastructure",
+    description: "Orchestration, ETL/ELT, dbt, and cloud data warehouses",
+    ctaText: "Build My Data Stack",
+    href: "#contact",
+    icon: "GitBranch",
+  },
+  {
+    id: "development",
+    title: "I know exactly what I need built",
+    description: "Backend, APIs, DevOps, or full-stack with modern tools",
+    ctaText: "Get Development Support",
+    href: "#contact",
+    icon: "Code",
+  },
+  {
+    id: "consultation",
+    title: "I just want to connect",
+    description: "30-minute discovery call to discuss your project",
+    ctaText: "Book a Free Consultation",
+    href: "#contact",
+    icon: "MessageCircle",
+  },
+];
