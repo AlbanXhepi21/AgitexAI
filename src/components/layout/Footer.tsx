@@ -1,41 +1,46 @@
 import Link from "next/link";
 
 const servicesLinks = [
-  { label: "AI & ML", href: "#services" },
-  { label: "Data Engineering", href: "#services" },
-  { label: "MLOps & Backend", href: "#services" },
-  { label: "DevOps & Cloud", href: "#services" },
+  { label: "AI & agents", href: "/#services" },
+  { label: "Data & MLOps", href: "/#services" },
+  { label: "Cloud & backends", href: "/#services" },
 ];
 
 const companyLinks = [
-  { label: "About Us", href: "#why-us" },
-  { label: "Our Process", href: "#process" },
-  { label: "Case Studies", href: "#portfolio" },
-  { label: "Careers", href: "#" },
+  { label: "Insights", href: "/#insights" },
+  { label: "Why us", href: "/#why-us" },
+  { label: "Process", href: "/#process" },
+  { label: "Work", href: "/#portfolio" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export function Footer() {
   return (
-    <footer className="bg-[var(--primary-deep-blue-dark)] text-gray-400 py-16">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand */}
+    <footer className="border-t border-[var(--border)] bg-[var(--bg-primary)] py-12 md:py-16">
+      <div className="container mx-auto max-w-[1140px] px-6">
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10 flex-wrap">
           <div>
             <Link
               href="/"
-              className="font-display font-bold text-xl text-white"
+              className="font-display font-extrabold text-lg text-[var(--text-primary)] tracking-tight inline-flex items-center gap-2.5"
             >
-              Agitex<span className="text-[var(--accent-electric-blue)]">AI</span>
+              <span className="relative flex h-7 w-7 items-center justify-center rounded-md border border-[var(--border-hover)] bg-[var(--navy-card)] text-sm font-extrabold text-white overflow-hidden">
+                A
+                <span className="absolute bottom-0 right-0.5 text-[9px] font-extrabold leading-none text-[var(--accent)]">
+                  ×
+                </span>
+              </span>
+              Agitex<span className="text-[var(--accent-bright)]">AI</span>
             </Link>
-            <p className="mt-4 text-sm text-gray-400 max-w-xs">
-              AI-powered software development for ambitious businesses
+            <p className="mt-3 text-[13px] text-[var(--text-tertiary)] max-w-xs pl-9">
+              © 2026 AgitexAI. All rights reserved.
             </p>
-            <div className="mt-6 flex gap-4">
+            <div className="mt-4 pl-9 flex gap-4">
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] transition-colors"
                 aria-label="LinkedIn"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -46,7 +51,7 @@ export function Footer() {
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] transition-colors"
                 aria-label="GitHub"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -55,78 +60,64 @@ export function Footer() {
               </a>
             </div>
           </div>
-
-          {/* Services */}
-          <div>
-            <h3 className="font-display font-semibold text-white mb-4">
-              Services
-            </h3>
-            <ul className="space-y-2">
-              {servicesLinks.map((link) => (
-                <li key={link.href}>
+          <div className="flex flex-wrap gap-12 md:gap-16">
+            <div>
+              <h3 className="font-display font-semibold text-sm text-[var(--text-primary)] mb-3">
+                Services
+              </h3>
+              <ul className="space-y-2">
+                {servicesLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-[13px] text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-display font-semibold text-sm text-[var(--text-primary)] mb-3">
+                Company
+              </h3>
+              <ul className="space-y-2">
+                {companyLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-[13px] text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-display font-semibold text-sm text-[var(--text-primary)] mb-3">
+                Legal
+              </h3>
+              <ul className="space-y-2">
+                <li>
                   <Link
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                    href="/privacy"
+                    className="text-[13px] text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] transition-colors"
                   >
-                    {link.label}
+                    Privacy
                   </Link>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div>
-            <h3 className="font-display font-semibold text-white mb-4">
-              Company
-            </h3>
-            <ul className="space-y-2">
-              {companyLinks.map((link) => (
-                <li key={link.href}>
+                <li>
                   <Link
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                    href="/terms"
+                    className="text-[13px] text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] transition-colors"
                   >
-                    {link.label}
+                    Terms
                   </Link>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="font-display font-semibold text-white mb-4">
-              Contact
-            </h3>
-            <a
-              href="mailto:albanxhepi@agitexai.com"
-              className="text-gray-400 hover:text-white transition-colors text-sm block"
-            >
-              albanxhepi@agitexai.com
-            </a>
-            <p className="mt-2 text-sm">Tirana, Albania</p>
-            <p className="text-sm">US & EU time zones</p>
-          </div>
-        </div>
-
-        <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-gray-500">
-            © 2025 AgitexAI. All rights reserved.
-          </p>
-          <div className="flex gap-6">
-            <Link
-              href="/privacy"
-              className="text-sm text-gray-500 hover:text-white transition-colors"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/terms"
-              className="text-sm text-gray-500 hover:text-white transition-colors"
-            >
-              Terms of Service
-            </Link>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

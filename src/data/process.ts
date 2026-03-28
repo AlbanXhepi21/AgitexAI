@@ -2,32 +2,28 @@ export const processSteps = [
   {
     id: "discovery",
     title: "Discovery",
-    description:
-      "We dive deep into your requirements, challenges, and goals",
+    description: "Deep dive into requirements, challenges, and goals",
     duration: "Week 1",
     step: 1,
   },
   {
-    id: "design",
-    title: "Design & Planning",
-    description:
-      "Architecture, tech stack selection, detailed roadmap",
-    duration: "Week 1-2",
+    id: "architecture",
+    title: "Architecture",
+    description: "Tech stack selection and detailed roadmap",
+    duration: "Week 1–2",
     step: 2,
   },
   {
-    id: "development",
-    title: "Development",
-    description:
-      "Agile sprints with regular demos and feedback loops",
-    duration: "Week 2-6",
+    id: "build",
+    title: "Build",
+    description: "Agile sprints with regular demos",
+    duration: "Week 2–6",
     step: 3,
   },
   {
-    id: "launch",
-    title: "Launch & Support",
-    description:
-      "Deployment, monitoring, maintenance, and iteration",
+    id: "ship",
+    title: "Ship & support",
+    description: "Deployment, monitoring, iteration",
     duration: "Ongoing",
     step: 4,
   },

@@ -1,52 +1,47 @@
 "use client";
 
-import { Zap, Award, Layers, ShieldCheck } from "lucide-react";
+import { Zap, Award, Layers } from "lucide-react";
 import { valueProps } from "@/data/valueProps";
 import { SectionHeader } from "@/components/common/SectionHeader";
-import { TechMarquee } from "@/components/ui/TechMarquee";
+import { Reveal } from "@/components/ui/Reveal";
 
 const iconMap = {
   Zap,
   Award,
   Layers,
-  ShieldCheck,
 };
 
 export function WhyUs() {
   return (
-    <section
-      id="why-us"
-      className="py-24 text-white"
-      style={{
-        background: "linear-gradient(180deg, #0D3B66 0%, #092847 100%)",
-      }}
-    >
-      <div className="container mx-auto px-6">
-        <SectionHeader
-          title="Why Choose AgitexAI?"
-          subtitle="We Build Fast, Reliable, Scalable Solutions"
-          light
-        />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+    <section id="why-us" className="py-24 md:py-28 bg-[var(--bg-primary)]">
+      <div className="container mx-auto max-w-[1140px] px-6">
+        <Reveal>
+          <SectionHeader
+            label="Why AgitexAI"
+            title="The unfair advantage"
+            subtitle=""
+          />
+        </Reveal>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12 md:mt-14">
           {valueProps.map((prop) => {
             const Icon = iconMap[prop.icon as keyof typeof iconMap] ?? Zap;
             return (
-              <div
-                key={prop.id}
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-colors"
-              >
-                <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-4">
-                  <Icon className="w-6 h-6 text-white" />
+              <Reveal key={prop.id}>
+                <div className="h-full rounded-xl border border-[var(--border)] p-7 transition-colors duration-300 hover:border-[var(--border-hover)] hover:bg-[var(--bg-card)]">
+                  <h3 className="font-display font-semibold text-base text-[var(--text-primary)] mb-2">
+                    {prop.title}
+                  </h3>
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                    {prop.description}
+                  </p>
+                  <div className="mt-5 flex justify-end opacity-40">
+                    <Icon className="w-6 h-6 text-[var(--accent-bright)]" aria-hidden />
+                  </div>
                 </div>
-                <h3 className="font-display font-semibold text-xl text-white mb-2">
-                  {prop.title}
-                </h3>
-                <p className="text-white/80 text-sm">{prop.description}</p>
-              </div>
+              </Reveal>
             );
           })}
         </div>
-        <TechMarquee />
       </div>
     </section>
   );

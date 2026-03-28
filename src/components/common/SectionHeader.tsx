@@ -2,32 +2,30 @@
 
 type SectionHeaderProps = {
   title: string;
-  subtitle: string;
-  light?: boolean;
+  subtitle?: string;
+  label?: string;
   centered?: boolean;
 };
 
 export function SectionHeader({
   title,
   subtitle,
-  light = false,
+  label,
   centered = false,
 }: SectionHeaderProps) {
-  const textColor = light ? "text-white" : "text-gray-900";
-  const subtitleColor = light ? "text-white/80" : "text-gray-600";
-
   return (
     <div className={centered ? "text-center max-w-3xl mx-auto" : ""}>
-      <h2
-        className={`font-display font-bold text-3xl md:text-4xl lg:text-5xl ${textColor}`}
-      >
+      {label && <span className="section-label">{label}</span>}
+      <h2 className="font-display font-bold text-[clamp(28px,4vw,42px)] leading-tight tracking-tight text-[var(--text-primary)]">
         {title}
       </h2>
-      <p
-        className={`mt-4 text-lg md:text-xl ${subtitleColor} max-w-2xl ${centered ? "mx-auto" : ""}`}
-      >
-        {subtitle}
-      </p>
+      {subtitle ? (
+        <p
+          className={`mt-4 text-[17px] leading-relaxed text-[var(--text-secondary)] max-w-[540px] ${centered ? "mx-auto" : ""}`}
+        >
+          {subtitle}
+        </p>
+      ) : null}
     </div>
   );
 }

@@ -1,35 +1,13 @@
-export const techStackRow1 = [
+/** Curated stack for the marquee — one row, no duplicate second ticker */
+export const techStackMarquee = [
+  "PydanticAI",
+  "LangGraph",
+  "FastAPI",
   "OpenAI",
   "Anthropic",
-  "LangChain",
-  "PydanticAI",
-  "Hugging Face",
-  "Ollama",
-  "MLflow",
-];
-
-export const techStackRow2 = [
-  "React",
-  "FastAPI",
-  "Python",
   "PostgreSQL",
   "Docker",
+  "AWS",
   "Kubernetes",
   "Terraform",
-];
-
-export const techStackRow3 = [
-  "Airflow",
-  "Dagster",
-  "dbt",
-  "AWS",
-  "GCP",
-  "Vercel",
-  "Redis",
-];
-
-export const techStackAll = [
-  ...techStackRow1,
-  ...techStackRow2,
-  ...techStackRow3,
 ];

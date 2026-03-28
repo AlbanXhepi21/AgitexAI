@@ -1,28 +1,23 @@
 export const valueProps = [
   {
     id: "speed",
-    title: "Speed to Market",
-    description: "MVP in 4-6 weeks. We move fast without sacrificing quality.",
+    title: "Speed without shortcuts",
+    description:
+      "MVP in 4–6 weeks. We move fast because we've built these systems before — not because we cut corners.",
     icon: "Zap",
   },
   {
-    id: "cost",
-    title: "Cost-Effective Excellence",
+    id: "quality",
+    title: "European quality, competitive rates",
     description:
-      "European engineering standards at competitive rates. Maximum value for your investment.",
+      "Based in Tirana, Albania. Engineering standards that match Berlin or London at rates that make your budget stretch further.",
     icon: "Award",
   },
   {
-    id: "fullstack",
-    title: "Full-Stack Expertise",
+    id: "one-team",
+    title: "One team, end to end",
     description:
-      "From AI/ML and data pipelines to backend, DevOps, and cloud. One team, end-to-end.",
+      "AI, data, backend, cloud — no handoffs between vendors. One team owns the problem from discovery to production.",
     icon: "Layers",
-  },
-  {
-    id: "proven",
-    title: "Proven Track Record",
-    description: "5+ years building modern AI, data, and cloud solutions. We've seen it all.",
-    icon: "ShieldCheck",
   },
 ];

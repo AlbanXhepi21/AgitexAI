@@ -16,8 +16,18 @@ const config: Config = {
         },
         accent: {
           "electric-blue": "var(--accent-electric-blue)",
-          cyan: "var(--accent-cyan)",
-          teal: "var(--accent-teal)",
+          cyan: "var(--accent-cyan, #06B6D4)",
+          teal: "var(--accent-teal, #14B8A6)",
+        },
+        agitex: {
+          navy: "var(--navy)",
+          "navy-deep": "var(--navy-deep)",
+          card: "var(--navy-card)",
+          "card-hover": "var(--navy-card-hover)",
+          accent: "var(--accent)",
+          "accent-bright": "var(--accent-bright)",
+          muted: "var(--text-secondary)",
+          tertiary: "var(--text-tertiary)",
         },
       },
       fontFamily: {
@@ -31,9 +41,13 @@ const config: Config = {
         "gradient-card": "var(--gradient-card)",
         "gradient-text": "var(--gradient-text)",
       },
+      boxShadow: {
+        "accent-glow": "0 8px 30px var(--accent-glow-strong)",
+        "accent-soft": "0 20px 60px rgba(0,0,0,0.4), 0 0 60px var(--accent-glow)",
+      },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
 
 export default config;

@@ -6,56 +6,47 @@ const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
   : null;
 
-// Gmail: free, no domain verification — can send to any address (e.g. albanxhepi@agitexai.com)
 const gmailUser = process.env.GMAIL_USER;
 const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
 const useGmail = Boolean(gmailUser && gmailAppPassword);
 
-const gmailTransporter =
-  useGmail
-    ? nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: gmailUser,
-          pass: gmailAppPassword,
-        },
-      })
-    : null;
+const gmailTransporter = useGmail
+  ? nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: gmailUser,
+        pass: gmailAppPassword,
+      },
+    })
+  : null;
 
-const TO_EMAILS = (process.env.CONTACT_FORM_TO_EMAIL ?? "albanxhepi@agitexai.com")
+const TO_EMAILS = (process.env.CONTACT_FORM_TO_EMAIL ?? "contact@agitexai.com")
   .split(",")
   .map((e) => e.trim())
   .filter(Boolean);
-const defaultTo = TO_EMAILS.length > 0 ? TO_EMAILS : ["albanxhepi@agitexai.com"];
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL ?? "AgitexAI Website <onboarding@resend.dev>";
+const defaultTo = TO_EMAILS.length > 0 ? TO_EMAILS : ["contact@agitexai.com"];
+const FROM_EMAIL =
+  process.env.RESEND_FROM_EMAIL ?? "AgitexAI Website <onboarding@resend.dev>";
+
+const FALLBACK_CONTACT = "contact@agitexai.com";
 
 function buildPayload(body: Record<string, unknown>) {
-  const {
-    firstName,
-    lastName,
-    email,
-    phone,
-    company,
-    projectType,
-    budget,
-    message,
-  } = body;
+  const { name, email, projectType, message } = body;
 
   const subject =
-    `Contact form: ${[firstName, lastName].filter(Boolean).join(" ")}`.trim() ||
-    "New inquiry from website";
+    `Contact form: ${typeof name === "string" && name.trim() ? name.trim() : "New inquiry"}`.slice(
+      0,
+      255
+    );
   const html = `
     <h2>New contact form submission</h2>
-    <p><strong>Name:</strong> ${[firstName, lastName].filter(Boolean).join(" ") || "—"}</p>
+    <p><strong>Name:</strong> ${name ?? "—"}</p>
     <p><strong>Email:</strong> ${email}</p>
-    <p><strong>Phone:</strong> ${phone ?? "—"}</p>
-    <p><strong>Company:</strong> ${company ?? "—"}</p>
     <p><strong>Project type:</strong> ${projectType ?? "—"}</p>
-    <p><strong>Budget:</strong> ${budget ?? "—"}</p>
     <p><strong>Message:</strong></p>
     <pre style="white-space: pre-wrap; font-family: inherit;">${message}</pre>
   `;
-  return { subject: subject.slice(0, 255), html, replyTo: email as string };
+  return { subject, html, replyTo: email as string };
 }
 
 export async function POST(request: Request) {
@@ -82,7 +73,6 @@ export async function POST(request: Request) {
 
     const { subject, html, replyTo } = buildPayload(body);
 
-    // Prefer Gmail when configured: free, no domain verification, can send to any address
     if (gmailTransporter) {
       const info = await gmailTransporter.sendMail({
         from: `AgitexAI Contact <${gmailUser}>`,
@@ -94,7 +84,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: true, id: info.messageId });
     }
 
-    // Resend (requires domain verification to send to non-account addresses)
     if (!resend) {
       return NextResponse.json(
         { error: "Email service not configured." },
@@ -129,8 +118,7 @@ export async function POST(request: Request) {
     const message = err instanceof Error ? err.message : "Send failed";
     return NextResponse.json(
       {
-        error:
-          `Something went wrong: ${message}. Please try again or email albanxhepi@agitexai.com.`,
+        error: `Something went wrong: ${message}. Please try again or email ${FALLBACK_CONTACT}.`,
       },
       { status: 500 }
     );

@@ -2,38 +2,46 @@
 
 import { processSteps } from "@/data/process";
 import { SectionHeader } from "@/components/common/SectionHeader";
+import { Reveal } from "@/components/ui/Reveal";
 
 export function Process() {
   return (
-    <section id="process" className="py-24 bg-white">
-      <div className="container mx-auto px-6">
-        <SectionHeader
-          title="Our Process"
-          subtitle="From idea to production in four clear steps"
-        />
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
-          {/* Connection line - visible on desktop */}
-          <div
-            className="hidden lg:block absolute top-12 left-0 right-0 h-0.5 bg-gray-200"
-            style={{ left: "12.5%", right: "12.5%" }}
-          />
-          {processSteps.map((step) => (
-            <div key={step.id} className="relative">
-              <div className="flex flex-col items-center text-center">
-                <div className="w-24 h-24 rounded-full bg-[var(--primary-deep-blue)]/10 border-4 border-[var(--primary-deep-blue)] flex items-center justify-center mb-4 relative z-10">
-                  <span className="font-display font-bold text-2xl text-[var(--primary-deep-blue)]">
-                    {step.step}
-                  </span>
+    <section id="process" className="py-24 md:py-28 bg-[var(--bg-primary)]">
+      <div className="container mx-auto max-w-[1140px] px-6">
+        <Reveal>
+          <div className="text-center max-w-3xl mx-auto">
+            <SectionHeader
+              label="How we work"
+              title="From idea to production"
+              subtitle="Four clear steps. No surprises. Regular demos and tight feedback loops throughout."
+              centered
+            />
+          </div>
+        </Reveal>
+        <div className="mt-12 md:mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-0">
+          {processSteps.map((step, i) => (
+            <Reveal key={step.id}>
+              <div className="relative text-center px-4 py-8 lg:py-10">
+                {i < processSteps.length - 1 && (
+                  <div
+                    className="hidden lg:block absolute top-[46px] -right-2 w-10 h-px bg-gradient-to-r from-[var(--accent-dim)] to-transparent opacity-40"
+                    aria-hidden
+                  />
+                )}
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border-[1.5px] border-[var(--accent-dim)] bg-[var(--accent-glow)] font-mono text-[13px] text-[var(--accent-bright)] mb-4">
+                  {String(step.step).padStart(2, "0")}
                 </div>
-                <h3 className="font-display font-semibold text-xl text-gray-900 mb-2">
+                <h3 className="font-display font-semibold text-base text-[var(--text-primary)] mb-2">
                   {step.title}
                 </h3>
-                <p className="text-gray-600 text-sm mb-2">{step.description}</p>
-                <span className="text-xs font-medium text-[var(--primary-deep-blue)]">
+                <p className="text-[13px] text-[var(--text-tertiary)] leading-snug px-1">
+                  {step.description}
+                </p>
+                <p className="font-mono text-[11px] text-[var(--accent-dim)] mt-2">
                   {step.duration}
-                </span>
+                </p>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -1,62 +1,85 @@
-"use client";
-
 import { Button } from "@/components/common/Button";
-import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import { HeroTerminal } from "@/components/ui/HeroTerminal";
 
 const stats = [
-  { value: "10+", label: "Clients" },
-  { value: "5+", label: "Years Experience" },
-  { value: "EU & US", label: "Markets" },
+  {
+    num: (
+      <>
+        60<span className="text-[var(--accent-bright)]">%</span>
+      </>
+    ),
+    label: "Avg. time saved for clients",
+  },
+  {
+    num: (
+      <>
+        4–6<span className="text-[var(--accent-bright)]">wk</span>
+      </>
+    ),
+    label: "Idea to production MVP",
+  },
+  {
+    num: (
+      <>
+        US<span className="text-[var(--accent-bright)]"> & </span>EU
+      </>
+    ),
+    label: "Markets served",
+  },
 ];
 
 export function Hero() {
   return (
-    <section
-      className="relative min-h-screen flex items-center overflow-hidden hero-bg"
-      style={{
-        background: "linear-gradient(180deg, #0D3B66 0%, #092847 100%)",
-      }}
-    >
-      <AnimatedBackground />
-      <div className="container mx-auto px-6 pt-24 pb-32 md:pb-36 relative z-10">
-        <div className="max-w-3xl">
-          <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl text-[#FFFFFF] leading-tight tracking-tight">
-            Build Smarter. <br />
-            <span className="text-[#93C5FD]">Ship Faster.</span> <br />
-            <span className="text-[#FFFFFF]">Scale with AI.</span>
-          </h1>
-          <p className="mt-6 text-base md:text-lg max-w-xl text-[#E2E8F0]">
-            From AI-powered MVPs to enterprise integrations. Albanian
-            engineering excellence serving global ambitions.
-          </p>
-          <div className="flex flex-wrap gap-3 mt-8">
-            <Button href="#contact" variant="primary" size="md">
-              Start Your Project
-            </Button>
-            <Button href="#portfolio" variant="secondary" size="md">
-              See Our Work
-            </Button>
-          </div>
-        </div>
-      </div>
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-16 hero-bg">
+      <div className="hero-grid-bg" aria-hidden />
+      <div className="hero-glow" aria-hidden />
+      <div className="hero-glow-2" aria-hidden />
 
-      <div
-        className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-[#092847]/90 backdrop-blur-sm"
-        aria-hidden
-      >
-        <div className="container mx-auto px-6 py-5">
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="font-display font-bold text-xl md:text-2xl text-[#FFFFFF]">
-                  {stat.value}
+      <div className="container mx-auto max-w-[1140px] px-6 py-16 md:py-24 relative z-[2] w-full">
+        <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-12 xl:gap-8">
+          <div className="max-w-[700px] shrink">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[var(--border-hover)] bg-[rgba(45,122,224,0.05)] px-3.5 py-1.5 text-xs font-mono text-[var(--text-secondary)] mb-8 tracking-wide animate-fade-in-up">
+              <span
+                className="h-1.5 w-1.5 rounded-full bg-[var(--accent)] animate-pulse-dot"
+                aria-hidden
+              />
+              Available for Q2 2026 engagements
+            </div>
+            <h1 className="font-display font-extrabold text-[clamp(40px,6vw,68px)] leading-[1.05] tracking-[-0.06em] text-[var(--text-primary)] animate-fade-in-up [animation-delay:100ms]">
+              AI engineering
+              <br />
+              for{" "}
+              <span className="not-italic bg-gradient-to-br from-[var(--accent)] to-[var(--accent-bright)] bg-clip-text text-transparent">
+                global ambitions
+              </span>
+            </h1>
+            <p className="mt-6 text-lg max-w-[520px] text-[var(--text-secondary)] leading-relaxed animate-fade-in-up [animation-delay:200ms]">
+              We build production-ready AI agents, RAG systems, and data
+              pipelines for US &amp; EU companies. European engineering standards,
+              competitive rates, real results.
+            </p>
+            <div className="flex flex-wrap gap-3 mt-10 animate-fade-in-up [animation-delay:300ms]">
+              <Button href="/#contact" variant="primary" size="md">
+                Book a free strategy call →
+              </Button>
+              <Button href="/#portfolio" variant="secondary" size="md">
+                See our work
+              </Button>
+            </div>
+            <div className="mt-16 pt-8 border-t border-[var(--border)] flex flex-wrap gap-10 sm:gap-12 animate-fade-in-up [animation-delay:400ms]">
+              {stats.map((stat) => (
+                <div key={stat.label}>
+                  <div className="font-display font-bold text-[32px] leading-none tracking-tight text-[var(--text-primary)]">
+                    {stat.num}
+                  </div>
+                  <div className="text-[13px] text-[var(--text-tertiary)] mt-1 font-medium max-w-[11rem]">
+                    {stat.label}
+                  </div>
                 </div>
-                <div className="text-xs md:text-sm mt-0.5 text-[#94A3B8]">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+          <HeroTerminal className="hidden min-[1080px]:block w-[380px] shrink-0 shadow-accent-soft" />
         </div>
       </div>
     </section>

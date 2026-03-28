@@ -7,34 +7,22 @@ import { z } from "zod";
 import { Mail, Phone, Loader2 } from "lucide-react";
 import { SectionHeader } from "@/components/common/SectionHeader";
 import { Button } from "@/components/common/Button";
+import { Reveal } from "@/components/ui/Reveal";
+
+const PUBLIC_EMAIL = "contact@agitexai.com";
 
 const projectTypes = [
-  "AI/ML Project",
-  "Data Pipelines & Analytics",
-  "MLOps & Model Deployment",
-  "Backend & APIs",
-  "DevOps & Cloud",
-  "Full-Stack Development",
-  "Other",
-];
-
-const budgetRanges = [
-  "< $10,000",
-  "$10,000 - $25,000",
-  "$25,000 - $50,000",
-  "$50,000 - $100,000",
-  "$100,000+",
+  "AI agents or RAG",
+  "Data pipelines & MLOps",
+  "Cloud-native backend",
+  "Something else",
 ];
 
 const schema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().optional(),
+  name: z.string().min(1, "Name is required"),
   email: z.string().email("Valid email is required"),
-  phone: z.string().optional(),
-  company: z.string().optional(),
   projectType: z.string().optional(),
-  budget: z.string().optional(),
-  message: z.string().min(10, "Please describe your project (min 10 characters)"),
+  message: z.string().min(10, "Please add a bit more detail (min 10 characters)"),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -55,14 +43,16 @@ export function Contact() {
   const onSubmit = async (data: FormData) => {
     const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
     if (!accessKey) {
-      setSubmitError("Form not configured. Please set NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY in .env");
+      setSubmitError(
+        "Form not configured. Please set NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY in .env"
+      );
       return;
     }
 
     setIsSubmitting(true);
     setSubmitError(null);
     try {
-      const subject = `Contact: ${[data.firstName, data.lastName].filter(Boolean).join(" ") || "Inquiry"}`;
+      const subject = `Contact: ${data.name}`;
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -70,132 +60,99 @@ export function Contact() {
           access_key: accessKey,
           subject,
           botcheck: "",
-          ...data,
+          name: data.name,
+          email: data.email,
+          projectType: data.projectType ?? "",
+          message: data.message,
         }),
       });
       const json = await res.json().catch(() => ({}));
       if (!json.success) {
-        setSubmitError(json.message || "Something went wrong. Please try again or email albanxhepi@agitexai.com.");
+        setSubmitError(
+          json.message ||
+            `Something went wrong. Please try again or email ${PUBLIC_EMAIL}.`
+        );
         return;
       }
       setSubmitted(true);
     } catch {
-      setSubmitError("Network error. Please try again or email albanxhepi@agitexai.com.");
+      setSubmitError(`Network error. Please try again or email ${PUBLIC_EMAIL}.`);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <section
-      id="contact"
-      className="py-24 text-white"
-      style={{
-        background:
-          "linear-gradient(135deg, var(--primary-deep-blue) 0%, var(--primary-deep-blue-dark) 100%)",
-      }}
-    >
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto">
+    <section id="contact" className="py-24 md:py-28 bg-[var(--bg-primary)]">
+      <div className="container mx-auto max-w-[1140px] px-6">
+        <Reveal>
           <SectionHeader
-            title="Let's Build Something Amazing"
-            subtitle="Ready to transform your business? Let's connect."
-            light
-            centered
+            label="Get in touch"
+            title="Start a conversation"
+            subtitle="We reply within 24 hours on business days."
           />
+        </Reveal>
 
-          {submitted ? (
-            <div className="mt-12 bg-white rounded-2xl p-8 shadow-2xl text-center">
-              <p className="text-gray-900 font-semibold text-lg">
-                Thank you! We&apos;ll get back to you soon.
-              </p>
-              <p className="text-gray-600 mt-2">
-                In the meantime, feel free to reach out at albanxhepi@agitexai.com
-              </p>
-            </div>
-          ) : (
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="mt-12 bg-white rounded-2xl p-8 shadow-2xl text-gray-900"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {submitted ? (
+          <div className="mt-12 max-w-xl mx-auto rounded-xl border border-[var(--border)] bg-[var(--bg-card)] px-8 py-10 text-center">
+            <p className="text-[var(--text-primary)] font-semibold text-lg">
+              Thank you! We&apos;ll get back to you soon.
+            </p>
+            <p className="text-[var(--text-secondary)] mt-3 text-sm">
+              You can also write to{" "}
+              <a
+                className="text-[var(--accent-bright)] hover:underline"
+                href={`mailto:${PUBLIC_EMAIL}`}
+              >
+                {PUBLIC_EMAIL}
+              </a>
+            </p>
+          </div>
+        ) : (
+          <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+            <Reveal>
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-col gap-4"
+              >
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    First Name *
+                  <label className="block text-[13px] font-medium text-[var(--text-secondary)] mb-1.5">
+                    Your name
                   </label>
                   <input
-                    {...register("firstName")}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[var(--primary-deep-blue)] focus:ring-2 focus:ring-[var(--primary-deep-blue)]/20 outline-none transition"
-                    placeholder="John"
+                    {...register("name")}
+                    className="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--navy)] text-[var(--text-primary)] text-sm outline-none transition focus:border-[var(--accent-dim)] focus:shadow-[0_0_0_3px_var(--accent-glow)]"
+                    placeholder="Jane Doe"
                   />
-                  {errors.firstName && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.firstName.message}
+                  {errors.name && (
+                    <p className="text-red-400 text-sm mt-1">{errors.name.message}</p>
+                  )}
+                </div>
+                <div>
+                  <label className="block text-[13px] font-medium text-[var(--text-secondary)] mb-1.5">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    {...register("email")}
+                    className="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--navy)] text-[var(--text-primary)] text-sm outline-none transition focus:border-[var(--accent-dim)] focus:shadow-[0_0_0_3px_var(--accent-glow)]"
+                    placeholder="jane@company.com"
+                  />
+                  {errors.email && (
+                    <p className="text-red-400 text-sm mt-1">
+                      {errors.email.message}
                     </p>
                   )}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Last Name
-                  </label>
-                  <input
-                    {...register("lastName")}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[var(--primary-deep-blue)] focus:ring-2 focus:ring-[var(--primary-deep-blue)]/20 outline-none transition"
-                    placeholder="Doe"
-                  />
-                </div>
-              </div>
-
-              <div className="mt-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  {...register("email")}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[var(--primary-deep-blue)] focus:ring-2 focus:ring-[var(--primary-deep-blue)]/20 outline-none transition"
-                  placeholder="john@company.com"
-                />
-                {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.email.message}
-                  </p>
-                )}
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Phone Number
-                  </label>
-                  <input
-                    {...register("phone")}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[var(--primary-deep-blue)] focus:ring-2 focus:ring-[var(--primary-deep-blue)]/20 outline-none transition"
-                    placeholder="+1 (555) 000-0000"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Company Name
-                  </label>
-                  <input
-                    {...register("company")}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[var(--primary-deep-blue)] focus:ring-2 focus:ring-[var(--primary-deep-blue)]/20 outline-none transition"
-                    placeholder="Your Company"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Project Type
+                  <label className="block text-[13px] font-medium text-[var(--text-secondary)] mb-1.5">
+                    What do you need?
                   </label>
                   <select
                     {...register("projectType")}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[var(--primary-deep-blue)] focus:ring-2 focus:ring-[var(--primary-deep-blue)]/20 outline-none transition bg-white"
+                    className="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--navy)] text-[var(--text-primary)] text-sm outline-none transition focus:border-[var(--accent-dim)] focus:shadow-[0_0_0_3px_var(--accent-glow)]"
                   >
-                    <option value="">Select...</option>
+                    <option value="">Select a project type</option>
                     {projectTypes.map((opt) => (
                       <option key={opt} value={opt}>
                         {opt}
@@ -204,86 +161,99 @@ export function Contact() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Budget Range
+                  <label className="block text-[13px] font-medium text-[var(--text-secondary)] mb-1.5">
+                    Tell us about your project
                   </label>
-                  <select
-                    {...register("budget")}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[var(--primary-deep-blue)] focus:ring-2 focus:ring-[var(--primary-deep-blue)]/20 outline-none transition bg-white"
-                  >
-                    <option value="">Select...</option>
-                    {budgetRanges.map((opt) => (
-                      <option key={opt} value={opt}>
-                        {opt}
-                      </option>
-                    ))}
-                  </select>
+                  <textarea
+                    {...register("message")}
+                    rows={5}
+                    className="w-full min-h-[120px] px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--navy)] text-[var(--text-primary)] text-sm outline-none transition resize-y focus:border-[var(--accent-dim)] focus:shadow-[0_0_0_3px_var(--accent-glow)]"
+                    placeholder="What are you building? What's the timeline?"
+                  />
+                  {errors.message && (
+                    <p className="text-red-400 text-sm mt-1">
+                      {errors.message.message}
+                    </p>
+                  )}
                 </div>
-              </div>
-
-              <div className="mt-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Message / Project Description *
-                </label>
-                <textarea
-                  {...register("message")}
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[var(--primary-deep-blue)] focus:ring-2 focus:ring-[var(--primary-deep-blue)]/20 outline-none transition resize-none"
-                  placeholder="Tell us about your project..."
-                />
-                {errors.message && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.message.message}
+                {submitError && (
+                  <p className="text-red-300 text-sm bg-red-950/40 px-4 py-3 rounded-lg border border-red-900/50">
+                    {submitError}
                   </p>
                 )}
-              </div>
-
-              {submitError && (
-                <p className="mt-4 text-red-600 text-sm bg-red-50 px-4 py-3 rounded-xl">
-                  {submitError}
-                </p>
-              )}
-              <div className="mt-8">
-                <Button
-                  type="submit"
-                  variant="primary"
-                  size="lg"
-                  disabled={isSubmitting}
-                  className="w-full md:w-auto min-w-[200px]"
-                >
+                <Button type="submit" variant="primary" size="md" disabled={isSubmitting} className="w-fit mt-2">
                   {isSubmitting ? (
                     <>
                       <Loader2 className="w-5 h-5 animate-spin mr-2 inline" />
-                      Sending...
+                      Sending…
                     </>
                   ) : (
-                    "Send Message"
+                    "Send message →"
                   )}
                 </Button>
+              </form>
+            </Reveal>
+            <Reveal>
+              <div className="flex flex-col gap-7 pt-2 lg:pt-8">
+                <div>
+                  <h4 className="font-display font-semibold text-[15px] text-[var(--text-primary)] mb-1">
+                    Email
+                  </h4>
+                  <p className="text-sm text-[var(--text-secondary)]">
+                    <a
+                      href={`mailto:${PUBLIC_EMAIL}`}
+                      className="text-[var(--accent-bright)] hover:underline"
+                    >
+                      {PUBLIC_EMAIL}
+                    </a>
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-display font-semibold text-[15px] text-[var(--text-primary)] mb-1">
+                    Based in
+                  </h4>
+                  <p className="text-sm text-[var(--text-secondary)]">
+                    Tirana, Albania
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-display font-semibold text-[15px] text-[var(--text-primary)] mb-1">
+                    Serving
+                  </h4>
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                    US &amp; EU markets
+                    <br />
+                    Flexible timezone collaboration
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-display font-semibold text-[15px] text-[var(--text-primary)] mb-1">
+                    Response time
+                  </h4>
+                  <p className="text-sm text-[var(--text-secondary)]">
+                    Within 24 hours on business days
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-6 pt-4 border-t border-[var(--border)]">
+                  <a
+                    href={`mailto:${PUBLIC_EMAIL}`}
+                    className="flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--accent-bright)] transition-colors"
+                  >
+                    <Mail className="w-5 h-5" />
+                    Email us
+                  </a>
+                  <a
+                    href="tel:+355688829375"
+                    className="flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--accent-bright)] transition-colors"
+                  >
+                    <Phone className="w-5 h-5" />
+                    +355 68 88 29 375
+                  </a>
+                </div>
               </div>
-            </form>
-          )}
-
-          <div className="mt-12 text-center text-white/90">
-            <p className="font-medium mb-4">Prefer to talk directly?</p>
-            <div className="flex flex-wrap justify-center gap-6">
-              <a
-                href="mailto:albanxhepi@agitexai.com"
-                className="flex items-center gap-2 hover:text-white transition-colors"
-              >
-                <Mail className="w-5 h-5" />
-                albanxhepi@agitexai.com
-              </a>
-              <a
-                href="tel:+355688829375"
-                className="flex items-center gap-2 hover:text-white transition-colors"
-              >
-                <Phone className="w-5 h-5" />
-                +355 68 88 29 375
-              </a>
-            </div>
+            </Reveal>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

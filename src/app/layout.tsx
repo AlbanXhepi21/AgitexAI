@@ -1,23 +1,57 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { SITE_URL, siteDescription, siteName } from "@/lib/site";
+
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteName,
+  url: SITE_URL,
+  description: siteDescription,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Tirana",
+    addressCountry: "AL",
+  },
+  sameAs: [] as string[],
+};
 
 export const metadata: Metadata = {
-  title: "AgitexAI | AI-Powered Software Development",
-  description:
-    "From AI-powered MVPs to enterprise integrations. Build smarter, ship faster, scale with AI. Albanian engineering excellence serving US & EU clients.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${siteName} | AI Engineering & RAG for US & EU Teams`,
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
   keywords: [
-    "AI software development",
-    "AI MVP development",
-    "data engineering pipelines",
-    "MLOps model deployment",
-    "FastAPI Python backend",
-    "LangChain AI agents",
-    "DevOps cloud Kubernetes",
-    "Custom software Albania",
+    "AI engineering",
+    "RAG systems",
+    "AI agents",
+    "MLOps",
+    "FastAPI",
+    "data pipelines",
+    "custom AI development",
+    "Albania software agency",
+    "US EU AI consulting",
   ],
   openGraph: {
-    title: "AgitexAI | AI-Powered Software Development",
-    description: "From AI-powered MVPs to enterprise integrations. European excellence, global reach.",
+    type: "website",
+    locale: "en_US",
+    url: SITE_URL,
+    siteName,
+    title: `${siteName} | AI Engineering for Global Ambitions`,
+    description: siteDescription,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteName} | AI Engineering for Global Ambitions`,
+    description: siteDescription,
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -28,7 +62,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-[var(--off-white)]">{children}</body>
+      <body className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+        />
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

@@ -1,40 +1,27 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { techStackAll } from "@/data/techStack";
-
-const techLogos = techStackAll;
+import { techStackMarquee } from "@/data/techStack";
 
 export function TechMarquee() {
-  const duplicated = [...techLogos, ...techLogos];
+  const row = [...techStackMarquee, ...techStackMarquee];
 
   return (
-    <div className="mt-20 overflow-hidden">
+    <div className="overflow-hidden">
       <motion.div
-        className="flex gap-12 whitespace-nowrap"
-        animate={{ x: [0, -1440] }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        className="flex w-max gap-10 md:gap-12"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
       >
-        {duplicated.map((name, i) => (
+        {row.map((name, i) => (
           <span
             key={`${name}-${i}`}
-            className="text-white/70 hover:text-white text-lg font-medium transition-opacity"
+            className="font-mono text-[13px] text-[var(--text-tertiary)] tracking-wide whitespace-nowrap flex items-center gap-3"
           >
             {name}
-          </span>
-        ))}
-      </motion.div>
-      <motion.div
-        className="flex gap-12 whitespace-nowrap mt-6"
-        animate={{ x: [-1440, 0] }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-      >
-        {duplicated.map((name, i) => (
-          <span
-            key={`2-${name}-${i}`}
-            className="text-white/60 hover:text-white/90 text-base font-medium"
-          >
-            {name}
+            <span className="text-[var(--accent-dim)] opacity-40" aria-hidden>
+              ·
+            </span>
           </span>
         ))}
       </motion.div>
