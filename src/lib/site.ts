@@ -5,3 +5,7 @@ export const SITE_URL =
 export const siteName = "AgitexAI";
 export const siteDescription =
   "Production-ready AI agents, RAG systems, and data pipelines for US & EU companies. Engineering from Tirana — European standards, competitive rates.";
+
+/** Company profiles (footer, structured data) */
+export const LINKEDIN_URL = "https://www.linkedin.com/company/agitexai/";
+export const GITHUB_ORG_URL = "https://github.com/AgitexAI";

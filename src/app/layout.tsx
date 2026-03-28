@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { SITE_URL, siteDescription, siteName } from "@/lib/site";
+import {
+  GITHUB_ORG_URL,
+  LINKEDIN_URL,
+  SITE_URL,
+  siteDescription,
+  siteName,
+} from "@/lib/site";
 
 const orgJsonLd = {
   "@context": "https://schema.org",
@@ -15,7 +21,7 @@ const orgJsonLd = {
     addressLocality: "Tirana",
     addressCountry: "AL",
   },
-  sameAs: [] as string[],
+  sameAs: [LINKEDIN_URL, GITHUB_ORG_URL],
 };
 
 export const metadata: Metadata = {
