@@ -2,26 +2,39 @@ export const services = [
   {
     id: "autonomous-agents",
     title: "Autonomous AI Agents",
-    tagline: "Actions that run without babysitting",
+    tagline: "AI agents development for real workflows",
     description:
-      "Your team stops acting as the glue between tools, tickets, and approvals. Work that used to wait on a human handoff now completes on a clear policy you can audit.",
+      "We build agentic AI systems that execute against your tools and policies—so order-to-cash, support, and ops stop depending on manual glue. Production means audit trails, retries, and clear handoff—not brittle prompts.",
     bullets: [
-      "Cut order-to-cash cycle time by removing manual status checks between CRM, billing, and support.",
-      "Shrink exception queues: agents resolve or route cases using the same rules your best ops people follow.",
-      "Give leadership a live view of what ran, what failed, and why—instead of spreadsheet reconciliation.",
+      "Cut cycle time by automating status checks across CRM, billing, and ticketing with rules your compliance team can sign off on.",
+      "Shrink exception queues: agents resolve or route using the same logic your best operators use—measured, not guessed.",
+      "Leadership sees what ran, what failed, and why—built for enterprise AI solutions that survive review.",
     ],
     icon: "Bot",
   },
   {
+    id: "knowledge-rag",
+    title: "Knowledge & RAG Systems",
+    tagline: "RAG pipeline development tied to your sources",
+    description:
+      "RAG pipeline development is how support, sales, and internal teams get one accurate answer from approved content—policies, contracts, product facts—with citations, regression checks, and latency budgets that match your SLAs.",
+    bullets: [
+      "Higher deflection and faster resolution when every answer traces to vetted documentation.",
+      "Shorter sales cycles: RFP and security questionnaires pull from governed knowledge, not tribal memory.",
+      "Onboarding compresses when new hires query playbooks that stay current as you ship.",
+    ],
+    icon: "BookOpen",
+  },
+  {
     id: "voice-agents",
     title: "Voice AI Agents",
-    tagline: "Live conversations on phone and web",
+    tagline: "Voice AI development for phone & web",
     description:
-      "Callers and site visitors get answers and next steps without waiting on a free agent. Your human team handles the conversations that actually need judgment.",
+      "Voice AI development for US and EU enterprises: natural conversations with structured outcomes—identity, intake, routing—plus clean escalation when a human is non-negotiable. Built for regulated contexts, not toy demos.",
     bullets: [
-      "Insurance and benefits: first-call resolution for routine questions; hot transfer when policy edge cases appear.",
-      "SaaS and fintech: verify identity, capture intake, and book time—without losing people in IVR loops.",
-      "Healthcare triage: collect symptoms and route to the right queue with consistent documentation every time.",
+      "Insurance & benefits: first-call resolution for routine questions; hot transfer when policy edge cases appear.",
+      "SaaS & fintech: verify identity, capture intake, book time—without IVR dead-ends.",
+      "Healthcare-style triage: consistent documentation and routing every time volume spikes.",
     ],
     icon: "Mic",
   },
@@ -30,36 +43,23 @@ export const services = [
     title: "Process Automation",
     tagline: "Remove repetitive work from the line",
     description:
-      "Manual steps stop leaking time and errors into margin. Processes keep running when volume spikes or people are out.",
+      "Manual steps stop leaking time and errors into margin. Processes keep running when volume spikes or teams are thin—integrated with the systems finance and ops already trust.",
     bullets: [
       "Month-end close: reconciliation and handoffs that took days finish in hours with the same controls.",
-      "Claims and underwriting prep: data lands in the right system of record the first time.",
-      "Legal and compliance: routine review and routing scales without adding headcount per matter.",
+      "Claims and underwriting prep: data lands in the system of record the first time.",
+      "Legal and compliance: routine review and routing scales without linear headcount growth.",
     ],
     icon: "Workflow",
-  },
-  {
-    id: "knowledge-rag",
-    title: "Knowledge & RAG Systems",
-    tagline: "Answers tied to your real sources",
-    description:
-      "Support, sales, and internal teams stop guessing. Answers cite what your company actually approved—policies, contracts, product facts—not generic text.",
-    bullets: [
-      "Support deflection rises because reps and customers get one consistent answer from approved docs.",
-      "Sales cycles shorten: RFP and security questionnaires pull from vetted material instead of tribal memory.",
-      "Onboarding shrinks from weeks to days when new hires query internal playbooks that stay current.",
-    ],
-    icon: "BookOpen",
   },
   {
     id: "document-intelligence",
     title: "Document Intelligence",
     tagline: "Structure from messy files at scale",
     description:
-      "Unstructured inbound stops being a people problem. Data you need for decisions and downstream systems is extracted, classified, and routed automatically.",
+      "Unstructured inbound stops being a people problem. Extract, classify, and route into downstream systems with human review only where exceptions demand it.",
     bullets: [
-      "Loan and legal packets: key fields land in your LOS or DMS with human review only on exceptions.",
-      "Medical and insurance forms: intake teams move from typing to validating what the model already captured.",
+      "Loan and legal packets: key fields in your LOS or DMS with review queues on exceptions.",
+      "Medical and insurance forms: teams validate instead of retype.",
       "Vendor invoices: match, code, and post with fewer touches and faster dispute resolution.",
     ],
     icon: "FileSearch",
@@ -67,13 +67,13 @@ export const services = [
   {
     id: "ai-strategy",
     title: "AI Strategy & Roadmapping",
-    tagline: "Fund the right build, in order",
+    tagline: "AI consulting that earns the next dollar",
     description:
-      "You walk into budget conversations with a prioritized backlog tied to P&L and risk—not a slide of possibilities. No committed build until the plan earns its place.",
+      "Walk into budget conversations with a prioritized backlog tied to P&L and risk. We help US and EU buyers choose enterprise AI solutions in the right order—quick wins, platform bets, and explicit kill criteria.",
     bullets: [
-      "Use cases scored by revenue impact, cost to serve, and regulatory exposure—so finance sees the logic.",
-      "Honest gap analysis: data, integrations, and ownership called out before a line item hits the plan.",
-      "A staged roadmap: quick wins, platform bets, and explicit kill criteria if assumptions break.",
+      "Use cases scored by revenue impact, cost to serve, and regulatory exposure.",
+      "Honest gap analysis: data, integrations, ownership—before engineering starts.",
+      "Staged roadmaps with measurable checkpoints, not open-ended science projects.",
     ],
     icon: "Compass",
   },

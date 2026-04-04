@@ -18,8 +18,8 @@ export function WhyUs() {
         <Reveal>
           <SectionHeader
             label="Why AgitexAI"
-            title="The unfair advantage"
-            subtitle=""
+            title="Differentiation that matters to CTOs and COOs"
+            subtitle="Not another generic dev shop—a focused AI development agency for production-grade agents, RAG, and voice, with US and EU delivery experience and compliance-aware engineering."
           />
         </Reveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12 md:mt-14">

@@ -18,7 +18,7 @@ export function getMetadataBase(): URL {
 
 export const siteName = "AgitexAI";
 export const siteDescription =
-  "Enterprise AI solutions & AI development agency: AI agents, RAG pipeline development, voice AI & AI consulting for US & EU. Production-ready engineering from Tirana.";
+  "AI development agency for US & EU enterprises: AI agents development, RAG pipeline development, voice AI & AI consulting. Production-ready enterprise AI solutions—GDPR & EU AI Act–aware delivery.";
 
 /** Company profiles (footer, structured data) */
 export const LINKEDIN_URL = "https://www.linkedin.com/company/agitexai/";

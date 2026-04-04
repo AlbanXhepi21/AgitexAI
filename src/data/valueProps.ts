@@ -1,23 +1,23 @@
 export const valueProps = [
   {
-    id: "speed",
-    title: "Speed without shortcuts",
+    id: "production",
+    title: "Production systems—not science projects",
     description:
-      "MVP in 4–6 weeks. We move fast because we've built these systems before — not because we cut corners.",
+      "We optimize for deployable, scalable enterprise AI solutions: observability, rollback, and runbooks your team can own. MVPs ship in 4–6 weeks when scope is honest—not because we skip engineering rigor.",
     icon: "Zap",
   },
   {
-    id: "quality",
-    title: "European quality, competitive rates",
+    id: "specialization",
+    title: "Depth in agents, RAG & voice",
     description:
-      "Based in Tirana, Albania. Engineering standards that match Berlin or London at rates that make your budget stretch further.",
-    icon: "Award",
+      "General dev shops spread thin; we concentrate on AI agents development, RAG pipeline development, and voice AI development—the surfaces where bad architecture hurts fastest and remediation is expensive.",
+    icon: "Layers",
   },
   {
-    id: "one-team",
-    title: "One team, end to end",
+    id: "markets",
+    title: "US & EU delivery, one accountable team",
     description:
-      "AI, data, backend, cloud — no handoffs between vendors. One team owns the problem from discovery to production.",
-    icon: "Layers",
+      "European engineering standards from Tirana with competitive rates. GDPR-aligned practices and EU AI Act–conscious design for high-trust workloads—plus seamless collaboration with US stakeholders.",
+    icon: "Award",
   },
 ];

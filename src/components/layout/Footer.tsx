@@ -8,6 +8,7 @@ const servicesLinks = [
 ];
 
 const companyLinks = [
+  { label: "Who we work with", href: "/#who-we-work-with" },
   { label: "Insights", href: "/#insights" },
   { label: "Why us", href: "/#why-us" },
   { label: "Process", href: "/#process" },

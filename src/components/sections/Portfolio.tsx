@@ -11,9 +11,9 @@ export function Portfolio() {
       <div className="container mx-auto max-w-[1140px] px-6">
         <Reveal>
           <SectionHeader
-            label="Selected projects"
-            title="Results that speak for themselves"
-            subtitle="Every engagement starts with a specific business problem and ends with measurable impact."
+            label="Case studies"
+            title="Outcomes we measure—not slide decks"
+            subtitle="Representative engagements across SaaS, fintech, and operations: each scoped to a business problem, shipped with metrics your leadership can track."
           />
         </Reveal>
         <div className="mt-12 md:mt-14 grid grid-cols-1 md:grid-cols-2 gap-4">

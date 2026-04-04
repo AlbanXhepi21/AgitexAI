@@ -27,9 +27,9 @@ export function Services() {
       <div className="container mx-auto max-w-[1140px] px-6">
         <Reveal>
           <SectionHeader
-            label="What we build"
-            title="Six engagements we take seriously"
-            subtitle="We don't do everything. We do a focused set of things at a level that competes with teams 5× our size."
+            label="Enterprise AI solutions"
+            title="AI agents, RAG pipelines & voice AI—built to ship"
+            subtitle="Focused AI development agency capabilities: AI agents development, RAG pipeline development, voice AI development, plus automation, documents, and strategy. We compete on depth, not brochure breadth."
           />
         </Reveal>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12 md:mt-14">
