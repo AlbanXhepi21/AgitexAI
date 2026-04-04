@@ -9,7 +9,7 @@ import { SectionHeader } from "@/components/common/SectionHeader";
 import { Button } from "@/components/common/Button";
 import { Reveal } from "@/components/ui/Reveal";
 
-const PUBLIC_EMAIL = "contact@agitexai.com";
+const PUBLIC_EMAIL = "albanxhepi@agitexai.com";
 
 const projectTypes = [
   "AI agents or RAG",

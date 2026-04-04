@@ -20,15 +20,15 @@ const gmailTransporter = useGmail
     })
   : null;
 
-const TO_EMAILS = (process.env.CONTACT_FORM_TO_EMAIL ?? "contact@agitexai.com")
+const TO_EMAILS = (process.env.CONTACT_FORM_TO_EMAIL ?? "albanxhepi@agitexai.com")
   .split(",")
   .map((e) => e.trim())
   .filter(Boolean);
-const defaultTo = TO_EMAILS.length > 0 ? TO_EMAILS : ["contact@agitexai.com"];
+const defaultTo = TO_EMAILS.length > 0 ? TO_EMAILS : ["albanxhepi@agitexai.com"];
 const FROM_EMAIL =
   process.env.RESEND_FROM_EMAIL ?? "AgitexAI Website <onboarding@resend.dev>";
 
-const FALLBACK_CONTACT = "contact@agitexai.com";
+const FALLBACK_CONTACT = "albanxhepi@agitexai.com";
 
 function buildPayload(body: Record<string, unknown>) {
   const { name, email, projectType, message } = body;

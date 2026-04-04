@@ -30,7 +30,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 The form uses [Web3Forms](https://web3forms.com) (free, no domain verification). Submissions are sent to the email you verify when getting your access key.
 
-1. Go to [web3forms.com](https://web3forms.com) and enter **contact@agitexai.com** (or the inbox where you want to receive submissions).
+1. Go to [web3forms.com](https://web3forms.com) and enter **albanxhepi@agitexai.com** (or the inbox where you want to receive submissions).
 2. Verify that email via the link they send.
 3. Copy your **Access Key** and add to `.env`:  
    `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your-access-key-here`
