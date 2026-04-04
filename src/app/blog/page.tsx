@@ -8,12 +8,12 @@ import { SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Insights & articles",
   description:
-    "AI engineering notes, RAG and production lessons, and project updates from the AgitexAI team.",
+    "AI engineering, enterprise AI solutions, RAG pipeline development, and AI agents — practical notes from AgitexAI for US & EU teams.",
   alternates: { canonical: `${SITE_URL}/blog` },
   openGraph: {
     title: `Insights & articles | ${siteName}`,
     description:
-      "Practical posts on AI agents, RAG, data pipelines, and cloud delivery.",
+      "AI development agency notes: AI agents, RAG, voice AI, and production lessons.",
     url: "/blog",
   },
 };

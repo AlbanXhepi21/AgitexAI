@@ -7,6 +7,10 @@ export type BlogFrontmatter = {
   description: string;
   /** ISO date YYYY-MM-DD */
   date: string;
+  /** Shorter string for `<title>` / sharing when `title` is long (on-page H1 stays `title`) */
+  seoTitle?: string;
+  /** Optional meta keywords for the post (in addition to site-level keywords) */
+  keywords?: string[];
   author?: string;
   tags?: string[];
   /** Set true to hide from listing and sitemap */

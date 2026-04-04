@@ -62,8 +62,8 @@ export function Hero() {
               <Button href="/#contact" variant="primary" size="md">
                 Book a free strategy call →
               </Button>
-              <Button href="/#portfolio" variant="secondary" size="md">
-                See our work
+              <Button href="/#services" variant="secondary" size="md">
+                What we build
               </Button>
             </div>
             <div className="mt-16 pt-8 border-t border-[var(--border)] flex flex-wrap gap-10 sm:gap-12 animate-fade-in-up [animation-delay:400ms]">

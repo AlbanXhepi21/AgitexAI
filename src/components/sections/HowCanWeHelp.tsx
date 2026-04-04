@@ -24,8 +24,8 @@ export function HowCanWeHelp() {
         <Reveal>
           <SectionHeader
             label="How we help"
-            title="Pick the path that fits"
-            subtitle="Three common starting points — same team, same bar for quality."
+            title="If this sounds like your quarter, you're not alone"
+            subtitle="Three conversations we have with US and EU mid-market teams—same crew, same bar: production-ready work, not shelfware."
           />
         </Reveal>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12 md:mt-14 max-w-5xl mx-auto">

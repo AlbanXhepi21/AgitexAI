@@ -18,15 +18,23 @@ export function generateMetadata({ params }: Props): Metadata {
     return { title: "Not found" };
   }
   const url = `${SITE_URL}/blog/${post.slug}`;
+  const documentTitle = post.meta.seoTitle ?? post.meta.title;
   return {
-    title: `${post.meta.title} | ${siteName}`,
+    title: `${documentTitle} | ${siteName}`,
     description: post.meta.description,
+    ...(post.meta.keywords?.length
+      ? { keywords: post.meta.keywords }
+      : {}),
     openGraph: {
-      title: post.meta.title,
+      title: documentTitle,
       description: post.meta.description,
       type: "article",
       publishedTime: post.meta.date,
       url,
+    },
+    twitter: {
+      title: documentTitle,
+      description: post.meta.description,
     },
     alternates: {
       canonical: url,

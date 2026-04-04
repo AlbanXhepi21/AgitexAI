@@ -1,6 +1,7 @@
 ---
 title: "Welcome to AgitexAI Insights"
-description: "Why we publish here — AI engineering notes, project lessons, and what we’re learning while building for US & EU teams."
+seoTitle: "AgitexAI Insights | AI Engineering for US & EU"
+description: "AI engineering notes, RAG pipeline development lessons, and AI agents production tips—written for US & EU teams hiring an AI development partner."
 date: "2026-03-01"
 author: "AgitexAI"
 tags:

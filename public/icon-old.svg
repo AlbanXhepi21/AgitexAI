@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="AgitexAI">
+  <rect
+    width="32"
+    height="32"
+    rx="7"
+    fill="#101f34"
+    stroke="rgba(109, 166, 246, 0.2)"
+    stroke-width="1"
+  />
+  <text
+    x="16"
+    y="23"
+    text-anchor="middle"
+    font-family="system-ui, -apple-system, Segoe UI, sans-serif"
+    font-weight="800"
+    font-size="18"
+    fill="#ffffff"
+  >
+    A
+  </text>
+</svg>

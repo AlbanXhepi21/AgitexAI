@@ -1,6 +1,7 @@
 ---
 title: "AI engineering trends worth watching in 2026"
-description: "Agents, evals, smaller models, and platform maturity — what we’re paying attention to as we build for clients."
+seoTitle: "2026 AI Engineering Trends | Agents & RAG"
+description: "Enterprise AI solutions trends: agentic AI systems, evals, right-sized models, and data platforms—what we design around for US & EU clients in 2026."
 date: "2026-03-22"
 author: "AgitexAI"
 tags:

@@ -2,16 +2,15 @@ import Link from "next/link";
 import { GITHUB_ORG_URL, LINKEDIN_URL } from "@/lib/site";
 
 const servicesLinks = [
-  { label: "AI & agents", href: "/#services" },
-  { label: "Data & MLOps", href: "/#services" },
-  { label: "Cloud & backends", href: "/#services" },
+  { label: "Agents & automation", href: "/#services" },
+  { label: "Knowledge & voice", href: "/#services" },
+  { label: "Strategy & roadmapping", href: "/#services" },
 ];
 
 const companyLinks = [
   { label: "Insights", href: "/#insights" },
   { label: "Why us", href: "/#why-us" },
   { label: "Process", href: "/#process" },
-  { label: "Work", href: "/#portfolio" },
   { label: "Contact", href: "/#contact" },
 ];
 

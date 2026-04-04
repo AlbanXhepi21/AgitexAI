@@ -1,6 +1,7 @@
 ---
 title: "A practical RAG checklist before you go to production"
-description: "Retrieval quality, evaluation, latency, and safety — the minimum bar we use before shipping a RAG system to real users."
+seoTitle: "RAG Pipeline Development Checklist | Production"
+description: "RAG pipeline development checklist: retrieval, evaluation, latency, and safety—the minimum bar before shipping enterprise AI solutions to real users."
 date: "2026-03-15"
 author: "AgitexAI"
 tags:

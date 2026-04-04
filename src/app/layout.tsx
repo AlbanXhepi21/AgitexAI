@@ -6,6 +6,7 @@ import {
   GITHUB_ORG_URL,
   LINKEDIN_URL,
   SITE_URL,
+  getMetadataBase,
   siteDescription,
   siteName,
 } from "@/lib/site";
@@ -25,18 +26,28 @@ const orgJsonLd = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: getMetadataBase(),
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml", sizes: "any" }],
+  },
   title: {
     default: `${siteName} | AI Engineering & RAG for US & EU Teams`,
     template: `%s | ${siteName}`,
   },
   description: siteDescription,
   keywords: [
+    "AI development agency",
+    "enterprise AI solutions",
+    "AI agents development",
+    "RAG pipeline development",
+    "voice AI development",
+    "AI consulting services",
+    "agentic AI systems",
+    "AI implementation partner",
     "AI engineering",
     "RAG systems",
     "AI agents",
     "MLOps",
-    "FastAPI",
     "data pipelines",
     "custom AI development",
     "Albania software agency",
@@ -68,6 +79,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" sizes="any" />
+      </head>
       <body className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
         <script
           type="application/ld+json"

@@ -1,14 +1,24 @@
 "use client";
 
-import { Bot, GitBranch, Cloud } from "lucide-react";
+import {
+  Bot,
+  Mic,
+  Workflow,
+  BookOpen,
+  FileSearch,
+  Compass,
+} from "lucide-react";
 import { services } from "@/data/services";
 import { SectionHeader } from "@/components/common/SectionHeader";
 import { Reveal } from "@/components/ui/Reveal";
 
 const iconMap = {
   Bot,
-  GitBranch,
-  Cloud,
+  Mic,
+  Workflow,
+  BookOpen,
+  FileSearch,
+  Compass,
 };
 
 export function Services() {
@@ -18,13 +28,13 @@ export function Services() {
         <Reveal>
           <SectionHeader
             label="What we build"
-            title="Three things we do exceptionally well"
-            subtitle="We don't do everything. We do AI engineering, data systems, and cloud infrastructure — at a level that competes with teams 5× our size."
+            title="Six engagements we take seriously"
+            subtitle="We don't do everything. We do a focused set of things at a level that competes with teams 5× our size."
           />
         </Reveal>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12 md:mt-14">
           {services.map((service) => {
-            const Icon = iconMap[service.icon as keyof typeof iconMap] ?? Cloud;
+            const Icon = iconMap[service.icon as keyof typeof iconMap] ?? Bot;
             return (
               <Reveal key={service.id}>
                 <div
@@ -37,22 +47,26 @@ export function Services() {
                   <div className="w-11 h-11 rounded-[10px] flex items-center justify-center bg-[var(--accent-glow)] border border-[rgba(45,122,224,0.12)] mb-5">
                     <Icon className="w-5 h-5 text-[var(--accent-bright)]" />
                   </div>
-                  <h3 className="font-display font-bold text-lg text-[var(--text-primary)] mb-2.5 tracking-tight">
+                  <h3 className="font-display font-bold text-lg text-[var(--text-primary)] mb-1 tracking-tight">
                     {service.title}
                   </h3>
+                  <p className="text-sm font-medium text-[var(--accent-bright)] mb-3">
+                    {service.tagline}
+                  </p>
                   <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
                     {service.description}
                   </p>
-                  <div className="flex flex-wrap gap-1.5 mt-5">
-                    {service.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2.5 py-1 rounded text-[11px] font-mono bg-[rgba(45,122,224,0.08)] text-[var(--accent-bright)] border border-[rgba(45,122,224,0.12)]"
-                      >
-                        {tag}
-                      </span>
+                  <ul className="mt-5 space-y-2.5 text-sm text-[var(--text-secondary)] leading-relaxed">
+                    {service.bullets.map((item) => (
+                      <li key={item} className="flex gap-2.5">
+                        <span
+                          className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[var(--accent-bright)]"
+                          aria-hidden
+                        />
+                        <span>{item}</span>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               </Reveal>
             );
